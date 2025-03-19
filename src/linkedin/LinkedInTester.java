@@ -83,5 +83,17 @@ public class LinkedInTester {
         insertList.printList();
 
 
+        System.out.println(" remove element via index");
+        LinkedList removeList = new LinkedList();
+        removeList.append(1);
+        removeList.append(2);
+        removeList.append(4);
+        removeList.append(3);
+        removeList.printList();
+        System.out.println("removed element "+removeList.remove(2).value);
+        System.out.println("after insert");
+        removeList.printList();
+
+
     }
 }

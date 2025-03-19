@@ -59,7 +59,7 @@ public class LinkedList {
      * now point tail to pre and tail.next to null
      * reduce length
      */
-    public void removeLastItem() {
+    public Node removeLastItem() {
         Node temp = head;
         Node pre = head;
         if (length != 0) {
@@ -75,7 +75,9 @@ public class LinkedList {
                 head = null;
                 tail = null;
             }
+            return temp;
         }
+        return null;
     }
 
     /**
@@ -110,7 +112,7 @@ public class LinkedList {
      * then assign head to temp.next. next element of Head
      * reduce length
      */
-    public void removeFirst() {
+    public Node removeFirst() {
         if (length != 0) {
             Node temp = head;
             if (length == 1) {
@@ -120,24 +122,27 @@ public class LinkedList {
                 head = temp.next;
             }
             length--;
+            return temp;
         }
+        return null;
     }
 
     /**
      * check if list is empty, index is less than 0 or greater or equal to length return null
      * for loop till index retrun index
+     *
      * @param index
      * @return
      */
     public Node get(int index) {
 
-        if(length==0||index<0 || index>=length) return null;
-        if(index==0)
+        if (length == 0 || index < 0 || index >= length) return null;
+        if (index == 0)
             return head;
-        if(index==length-1)
+        if (index == length - 1)
             return tail;
-        Node temp =head;
-        for(int i=0; i<index ;i++ ){
+        Node temp = head;
+        for (int i = 0; i < index; i++) {
             temp = temp.next;
         }
         return temp;
@@ -150,13 +155,14 @@ public class LinkedList {
      * if not null set new vlaue to current temp node
      * return true
      * else return false
+     *
      * @param index
      * @param value
      * @return
      */
     public boolean set(int index, int value) {
         Node temp = get(index);
-        if (temp!=null) {
+        if (temp != null) {
             temp.value = value;
             return true;
         }
@@ -171,26 +177,58 @@ public class LinkedList {
      * create new node and replace new node next with Node received from get(index) call
      * now change node.next value of get(index-1) with new node.
      * we have added node successfully
+     *
      * @param index
      * @param value
      * @return
      */
-    public boolean insert(int index, int value){
-        if(length==0|| index<0|| index>length) return false;
-        if(index==0){
+    public boolean insert(int index, int value) {
+        if (length == 0 || index < 0 || index > length) return false;
+        if (index == 0) {
             prePendItem(value);
             return true;
         }
-        if(index==length-1){
+        if (index == length - 1) {
             append(value);
             return true;
         }
-        Node temp = get(index-1);
+        Node temp = get(index - 1);
         Node newNode = new Node(value);
         newNode.next = temp.next;
         temp.next = newNode;
         length++;
         return true;
+    }
+
+    /**
+     * check index validity
+     * if index 0, removeFirst()
+     * if last index(length-1) , removeLast()
+     * <p>
+     * use get(index-1) to get pre Node
+     * temp node using pre.next , node to be removed
+     * <p>
+     * point preNode to temp.next node
+     * make temp.next point to null
+     * return temp node
+     *
+     * @param index
+     * @return
+     */
+    public Node remove(int index) {
+        if (length == 0 || index < 0 || index >= length) return null;
+        if (index == 0) {
+            return removeFirst();
+        }
+        if (index == length - 1) {
+            return removeLastItem();
+        }
+
+        Node pre = get(index - 1);
+        Node temp = pre.next;//get(index);
+        pre.next = temp.next;
+        temp.next = null;
+        return temp;
     }
 
     public void getHead() {
