@@ -209,6 +209,7 @@ public class LinkedList {
      * temp node using pre.next , node to be removed
      * <p>
      * point preNode to temp.next node
+     * reduce length of list by 1
      * make temp.next point to null
      * return temp node
      *
@@ -227,6 +228,7 @@ public class LinkedList {
         Node pre = get(index - 1);
         Node temp = pre.next;//get(index);
         pre.next = temp.next;
+        length--;
         temp.next = null;
         return temp;
     }
