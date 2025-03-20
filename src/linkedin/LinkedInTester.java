@@ -94,6 +94,17 @@ public class LinkedInTester {
         System.out.println("after insert");
         removeList.printList();
 
+        System.out.println(" reverse linked list");
+        LinkedList reverseList = new LinkedList();
+        reverseList.append(1);
+        reverseList.append(2);
+        reverseList.append(4);
+        reverseList.append(3);
+        reverseList.printList();
+        System.out.println(" Reverse list ");
+        reverseList.reverse();
+        reverseList.printList();
+
 
     }
 }

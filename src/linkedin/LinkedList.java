@@ -101,6 +101,17 @@ public class LinkedList {
         }
         length++;
 
+        // use below as well
+
+        /*if(length==0){
+            append(value);
+        } else{
+            Node newNode = new Node(value);
+            newNode.next=head;
+            head= newNode;
+            length++;
+        }*/
+
     }
 
     /**
@@ -122,6 +133,8 @@ public class LinkedList {
                 head = temp.next;
             }
             length--;
+            // return node next element should not be pointing to node rather null
+            temp.next=null;
             return temp;
         }
         return null;
@@ -231,6 +244,21 @@ public class LinkedList {
         length--;
         temp.next = null;
         return temp;
+    }
+
+    public void reverse() {
+        Node temp = head;
+        head = tail;
+        tail = temp;
+        Node after = temp.next;
+        Node before = null;
+        for (int i = 0; i < length; i++) {
+            after = temp.next;
+            temp.next = before;
+            before = temp;
+            temp = after;
+        }
+
     }
 
     public void getHead() {
