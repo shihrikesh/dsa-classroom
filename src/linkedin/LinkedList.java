@@ -261,6 +261,37 @@ public class LinkedList {
 
     }
 
+    public Node findMiddleNode(){
+        if(length==0) return null;
+        Node slow=head;
+        Node fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+
+        return slow;
+    }
+
+    public boolean hasLoop(){
+        if(length==0) return false;
+        Node slow=head;
+        Node fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /*public Node findKthFromEnd(int k){
+        if(length==0 || k>=length) return null;
+
+    }*/
+
     public void getHead() {
         System.out.println("Head " + head.value);
     }

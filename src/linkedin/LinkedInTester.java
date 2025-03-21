@@ -106,5 +106,21 @@ public class LinkedInTester {
         reverseList.printList();
 
 
+
+        System.out.println(" FInd Middle of linked list");
+        LinkedList middle = new LinkedList();
+        middle.append(1);
+        middle.append(2);
+        middle.append(3);
+        middle.append(4);
+        middle.append(5);
+        //middle.append(6);
+        middle.printList();
+        System.out.println(" Middle list ");
+        System.out.println(middle.findMiddleNode().value);
+
+
+
+
     }
 }
