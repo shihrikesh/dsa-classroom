@@ -10,6 +10,10 @@ public class LinkedList {
         int value;
         Node next;
 
+        public Node(){
+
+        }
+
         public Node(int value) {
             this.value = value;
         }
@@ -261,6 +265,14 @@ public class LinkedList {
 
     }
 
+    /**
+     * find middle node
+     * Slow and fast pointer
+     *
+     * loop over fast and fast.next !null
+     * increment slow.next and fast to fast.next.next;
+     * @return
+     */
     public Node findMiddleNode(){
         if(length==0) return null;
         Node slow=head;
@@ -273,6 +285,13 @@ public class LinkedList {
         return slow;
     }
 
+    /**
+     * find loop in list
+     *
+     * slow and fast pointer
+     * keep the loop just check if anytime slow and fast pointer matches
+     * @return
+     */
     public boolean hasLoop(){
         if(length==0) return false;
         Node slow=head;
@@ -285,6 +304,27 @@ public class LinkedList {
             }
         }
         return false;
+    }
+
+    public Node mergeSortedList(Node node1, Node node2){
+        Node head=new Node();
+        Node tail=head;
+
+        while(node1!=null && node2!=null){
+            if(node1.value<node2.value){
+                tail.next=node1;
+            } else {
+                tail.next=node2;
+            }
+            tail=tail.next;
+        }
+
+        if(node1!=null){
+            tail.next=node1;
+        } else{
+            tail.next=node2;
+        }
+        return head.next;
     }
 
     /*public Node findKthFromEnd(int k){

@@ -120,7 +120,66 @@ public class LinkedInTester {
         System.out.println(middle.findMiddleNode().value);
 
 
+        System.out.println("Merge Sorted List");
+        LinkedList list1=new LinkedList();
+        list1.append(1);
+        list1.append(4);
+        list1.append(6);
+
+        //LinkedList list3=new LinkedList();
+        LinkedList list2=new LinkedList();
+        list2.append(1);
+        list2.append(2);
+        list2.append(3);
+        list2.append(5);
+
+        System.out.println();
 
 
+        LinkedInTester linkedInTester = new LinkedInTester();
+
+        LinkedList.Node node = linkedInTester.mergeSortedList(list1.get(0),list2.get(0));
+        while(node!=null){
+            System.out.println(node.value);
+            node=node.next;
+        }
+    }
+
+
+    /**
+     * merge two sorted list provided two heads
+     * first create empty head
+     * create tail and assign tail with head.
+     * check if both list are not null, if any null simply assign head to tail and
+     *  return head.next or vice versa
+     *
+     *  if both list now empty
+     *  check each value and assign lower to tail.next and incrment counter to node1=node1.next
+     *  do for both and at end tail=tail.next assigning new tail
+     * @param node1
+     * @param node2
+     * @return
+     */
+    public LinkedList.Node mergeSortedList(LinkedList.Node node1, LinkedList.Node node2){
+        LinkedList.Node head=new LinkedList.Node();
+        LinkedList.Node tail=head;
+
+        while(node1!=null && node2!=null){
+            if(node1.value<node2.value){
+                tail.next=node1;
+                node1=node1.next;
+            } else {
+                tail.next=node2;
+                node2=node2.next;
+            }
+            tail=tail.next;
+        }
+
+        if(node1!=null){
+            tail.next=node1;
+        } else{
+            tail.next=node2;
+        }
+        return head.next;
     }
 }
