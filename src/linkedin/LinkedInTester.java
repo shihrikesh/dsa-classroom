@@ -143,6 +143,15 @@ public class LinkedInTester {
             System.out.println(node.value);
             node=node.next;
         }
+
+        System.out.println("kth elemt from last ");
+        LinkedList findKElementFromLast =new LinkedList();
+        findKElementFromLast.append(1);
+        findKElementFromLast.append(2);
+        findKElementFromLast.append(3);
+        findKElementFromLast.append(4);
+        findKElementFromLast.append(5);
+        System.out.println(findKElementFromLast.findKthFromEnd(4).value);
     }
 
 

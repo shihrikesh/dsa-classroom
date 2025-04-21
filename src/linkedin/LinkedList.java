@@ -10,7 +10,7 @@ public class LinkedList {
         int value;
         Node next;
 
-        public Node(){
+        public Node() {
 
         }
 
@@ -138,7 +138,7 @@ public class LinkedList {
             }
             length--;
             // return node next element should not be pointing to node rather null
-            temp.next=null;
+            temp.next = null;
             return temp;
         }
         return null;
@@ -268,18 +268,19 @@ public class LinkedList {
     /**
      * find middle node
      * Slow and fast pointer
-     *
+     * <p>
      * loop over fast and fast.next !null
      * increment slow.next and fast to fast.next.next;
+     *
      * @return
      */
-    public Node findMiddleNode(){
-        if(length==0) return null;
-        Node slow=head;
-        Node fast=head;
-        while(fast!=null && fast.next!=null){
-            slow=slow.next;
-            fast=fast.next.next;
+    public Node findMiddleNode() {
+        if (length == 0) return null;
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
 
         return slow;
@@ -287,50 +288,88 @@ public class LinkedList {
 
     /**
      * find loop in list
-     *
+     * <p>
      * slow and fast pointer
      * keep the loop just check if anytime slow and fast pointer matches
+     *
      * @return
      */
-    public boolean hasLoop(){
-        if(length==0) return false;
-        Node slow=head;
-        Node fast=head;
-        while(fast!=null && fast.next!=null){
-            slow=slow.next;
-            fast=fast.next.next;
-            if(slow==fast){
+    public boolean hasLoop() {
+        if (length == 0) return false;
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
                 return true;
             }
         }
         return false;
     }
 
-    public Node mergeSortedList(Node node1, Node node2){
-        Node head=new Node();
-        Node tail=head;
+    public Node mergeSortedList(Node node1, Node node2) {
+        Node head = new Node();
+        Node tail = head;
 
-        while(node1!=null && node2!=null){
-            if(node1.value<node2.value){
-                tail.next=node1;
+        while (node1 != null && node2 != null) {
+            if (node1.value < node2.value) {
+                tail.next = node1;
             } else {
-                tail.next=node2;
+                tail.next = node2;
             }
-            tail=tail.next;
+            tail = tail.next;
         }
 
-        if(node1!=null){
-            tail.next=node1;
-        } else{
-            tail.next=node2;
+        if (node1 != null) {
+            tail.next = node1;
+        } else {
+            tail.next = node2;
         }
         return head.next;
     }
 
-    /*public Node findKthFromEnd(int k){
-        if(length==0 || k>=length) return null;
+    public Node findKthFromEnd(int index) {
+        if (head == null) return null;
+        Node slow = head;
+        Node fast = head;
 
-    }*/
+        int length = 1;
+        if(index==length) return null;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            length = length + 2;
+        }
+        if (index > length) {
+            return null;
+        }
+        int newIndex = length - index;
+        Node temp = head;
+        for (int i = 0; i < newIndex; i++) {
+            temp = temp.next;
+
+        }
+        return temp;
+    }
+
+    public Node findKthFromLast2(int k){
+        Node slow= head;
+        Node fast=head;
+        for(int i=0;i<k;i++){
+            if(fast==null){
+                return null;
+            }
+            fast=fast.next;
+        }
+
+        while(fast!=null){
+            slow=slow.next;
+            fast=fast.next;
+        }
+        return slow;
+    }
 
     public void getHead() {
         System.out.println("Head " + head.value);
