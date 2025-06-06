@@ -152,6 +152,20 @@ public class LinkedInTester {
         findKElementFromLast.append(4);
         findKElementFromLast.append(5);
         System.out.println(findKElementFromLast.findKthFromEnd(4).value);
+
+        System.out.println("kth elemt from last second approach ");
+
+        System.out.println(findKElementFromLast.findKthFromLast2(4).value);
+
+        System.out.println("Remove Duplicate element ");
+        LinkedList removeDupFromLList =new LinkedList();
+        removeDupFromLList.append(1);
+        removeDupFromLList.append(2);
+        removeDupFromLList.append(2);
+        removeDupFromLList.append(2);
+        removeDupFromLList.append(2);
+        removeDupFromLList.removeDuplicate();
+        removeDupFromLList.printList();
     }
 
 

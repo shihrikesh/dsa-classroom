@@ -371,6 +371,30 @@ public class LinkedList {
         return slow;
     }
 
+    /**
+     * Create two node current and runner
+     * check if current.calue and runner.next.value same or not
+     *
+     * if same update current and runner next pointer to dup.next
+     * repeat same
+     */
+    public void removeDuplicate(){
+        Node current = head;
+        while(current!=null){
+            Node runner = current;
+            while(runner.next !=null){
+                if(current.value == runner.next.value){
+                    Node dup = runner.next;
+                    current.next=dup.next;
+                    runner.next=dup.next;
+                } else {
+                    runner= runner.next;
+                }
+            }
+            current=current.next;
+        }
+    }
+
     public void getHead() {
         System.out.println("Head " + head.value);
     }
